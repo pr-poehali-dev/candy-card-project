@@ -86,51 +86,70 @@ export default function Index() {
   ];
 
   return (
-    <div className="min-h-screen bg-dark text-cream">
-      <section className="relative min-h-screen flex flex-col items-center justify-center px-6 py-12 text-center">
-        <div className="absolute inset-0 bg-gradient-to-b from-gold/10 to-transparent opacity-30" />
+    <div className="min-h-screen bg-white text-foreground">
+      <section className="relative min-h-screen flex flex-col items-center justify-center px-6 py-12 text-center bg-gradient-to-br from-pink/5 via-purple/5 to-orange/5">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,105,180,0.1),transparent_50%),radial-gradient(circle_at_70%_80%,rgba(255,140,0,0.1),transparent_50%)]" />
         
         <div className="relative z-10 space-y-8 animate-fade-in">
-          <div className="w-20 h-20 mx-auto bg-gold rounded-full flex items-center justify-center">
-            <Icon name="Crown" size={40} className="text-dark" />
+          <div className="w-24 h-24 mx-auto bg-gradient-to-br from-pink to-purple rounded-3xl flex items-center justify-center shadow-2xl shadow-pink/30 rotate-12 hover:rotate-0 transition-transform duration-500">
+            <Icon name="Sparkles" size={48} className="text-white -rotate-12 hover:rotate-0 transition-transform duration-500" />
           </div>
           
-          <h1 className="text-6xl md:text-7xl font-light tracking-wider">
-            Atelier Confiserie
+          <h1 className="text-6xl md:text-8xl font-extrabold tracking-tight bg-gradient-to-r from-pink via-purple to-orange bg-clip-text text-transparent">
+            Sweet Dreams
           </h1>
           
-          <div className="w-24 h-px bg-gold mx-auto" />
+          <div className="flex items-center justify-center gap-3">
+            <div className="w-12 h-1 bg-gradient-to-r from-pink to-purple rounded-full" />
+            <Icon name="Heart" size={20} className="text-pink" />
+            <div className="w-12 h-1 bg-gradient-to-r from-purple to-orange rounded-full" />
+          </div>
           
-          <p className="text-xl md:text-2xl font-light text-cream/80 max-w-md mx-auto">
-            Изысканные десерты ручной работы для ценителей настоящего искусства
+          <p className="text-xl md:text-2xl font-medium text-foreground/70 max-w-2xl mx-auto leading-relaxed">
+            Яркие десерты, которые дарят радость! Каждое изделие — взрыв вкуса и эмоций
           </p>
+          
+          <Button 
+            size="lg" 
+            className="bg-gradient-to-r from-pink via-purple to-orange text-white font-bold text-lg px-10 py-7 rounded-full shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300"
+            onClick={() => document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' })}
+          >
+            <Icon name="Cake" size={24} />
+            Смотреть десерты
+            <Icon name="ArrowRight" size={24} />
+          </Button>
         </div>
         
         <div className="absolute bottom-12 animate-bounce">
-          <Icon name="ChevronDown" size={32} className="text-gold" />
+          <Icon name="ChevronDown" size={32} className="text-pink" />
         </div>
       </section>
 
       {sections.map((section, index) => (
         <section
           key={section.id}
-          className={`relative px-6 py-20 ${
-            index % 2 === 0 ? 'bg-dark' : 'bg-secondary'
+          id={index === 0 ? 'products' : undefined}
+          className={`relative px-6 py-24 ${
+            index % 2 === 0 ? 'bg-white' : 'bg-gradient-to-br from-muted via-white to-muted'
           }`}
         >
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-12 bg-gold" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2">
+            <div className="w-2 h-2 rounded-full bg-gradient-to-r from-pink to-purple" />
+          </div>
           
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16 space-y-4 animate-fade-in-up">
-              <h2 className="text-4xl md:text-5xl font-light tracking-wide">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-20 space-y-6 animate-fade-in-up">
+              <div className="inline-block px-6 py-2 bg-gradient-to-r from-pink/10 to-purple/10 rounded-full">
+                <p className="text-sm font-bold text-pink uppercase tracking-wider">Наша коллекция</p>
+              </div>
+              <h2 className="text-5xl md:text-6xl font-extrabold bg-gradient-to-r from-pink via-purple to-orange bg-clip-text text-transparent">
                 {section.title}
               </h2>
-              <div className="w-16 h-px bg-gold mx-auto" />
-              <p className="text-lg text-cream/70">{section.subtitle}</p>
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">{section.subtitle}</p>
             </div>
 
             {section.type === 'gallery' && (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                 {section.products.map((product, idx) => (
                   <div
                     key={product.id}
@@ -138,24 +157,27 @@ export default function Index() {
                     style={{ animationDelay: `${idx * 150}ms` }}
                     onClick={() => setSelectedProduct(product)}
                   >
-                    <div className="relative overflow-hidden rounded-lg aspect-square mb-4 border border-gold/20">
+                    <div className="relative overflow-hidden rounded-3xl aspect-square mb-6 shadow-xl group-hover:shadow-2xl transition-all duration-500 bg-gradient-to-br from-pink/10 to-purple/10">
                       <img
                         src={product.image}
                         alt={product.title}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:rotate-2"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-8">
-                        <div className="text-gold flex items-center gap-2">
-                          <Icon name="ZoomIn" size={20} />
-                          <span className="text-sm font-light tracking-wider">Подробнее</span>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-center pb-10">
+                        <div className="bg-white text-pink px-6 py-3 rounded-full flex items-center gap-3 shadow-2xl transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                          <Icon name="Eye" size={20} />
+                          <span className="text-sm font-bold">Смотреть</span>
                         </div>
+                      </div>
+                      <div className="absolute top-4 right-4 bg-gradient-to-r from-pink to-purple text-white px-4 py-2 rounded-full text-xs font-bold shadow-lg">
+                        ХИТ
                       </div>
                     </div>
                     
-                    <h3 className="text-xl font-light mb-2 text-center group-hover:text-gold transition-colors">
+                    <h3 className="text-2xl font-bold mb-3 text-center group-hover:text-pink transition-colors">
                       {product.title}
                     </h3>
-                    <p className="text-gold text-center font-light tracking-wide">
+                    <p className="text-2xl font-extrabold text-center bg-gradient-to-r from-pink to-purple bg-clip-text text-transparent">
                       {product.price}
                     </p>
                   </div>
@@ -164,8 +186,8 @@ export default function Index() {
             )}
 
             {section.type === 'video' && section.videoUrl && (
-              <div className="max-w-4xl mx-auto">
-                <div className="relative aspect-video rounded-lg overflow-hidden border border-gold/20 shadow-2xl shadow-gold/10">
+              <div className="max-w-5xl mx-auto">
+                <div className="relative aspect-video rounded-3xl overflow-hidden shadow-2xl ring-4 ring-pink/20">
                   <iframe
                     src={section.videoUrl}
                     title={section.title}
@@ -179,93 +201,108 @@ export default function Index() {
         </section>
       ))}
 
-      <section className="relative px-6 py-24 bg-dark">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-12 bg-gold" />
+      <section className="relative px-6 py-32 bg-gradient-to-br from-pink via-purple to-orange">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.1),transparent_70%)]" />
         
-        <div className="max-w-2xl mx-auto text-center space-y-12">
-          <div className="space-y-4 animate-fade-in-up">
-            <h2 className="text-4xl md:text-5xl font-light tracking-wide">
-              Свяжитесь с нами
+        <div className="max-w-3xl mx-auto text-center space-y-12 relative z-10">
+          <div className="space-y-6 animate-fade-in-up">
+            <div className="inline-block p-4 bg-white/20 backdrop-blur-sm rounded-3xl">
+              <Icon name="Sparkles" size={48} className="text-white" />
+            </div>
+            <h2 className="text-5xl md:text-6xl font-extrabold text-white">
+              Давайте создадим ваш десерт!
             </h2>
-            <div className="w-16 h-px bg-gold mx-auto" />
+            <p className="text-xl text-white/90">Мы готовы воплотить любые ваши идеи</p>
           </div>
 
-          <div className="space-y-6 text-cream/80">
-            <div className="flex items-center justify-center gap-3">
-              <Icon name="Phone" size={20} className="text-gold" />
-              <a href="tel:+79999999999" className="text-lg hover:text-gold transition-colors">
-                +7 (999) 999-99-99
-              </a>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <a href="tel:+79999999999" className="flex flex-col items-center gap-3 p-6 bg-white/10 backdrop-blur-sm rounded-2xl hover:bg-white/20 transition-all group">
+              <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                <Icon name="Phone" size={24} className="text-pink" />
+              </div>
+              <div className="text-white">
+                <p className="text-sm font-semibold mb-1">Позвоните</p>
+                <p className="text-lg font-bold">+7 (999) 999-99-99</p>
+              </div>
+            </a>
             
-            <div className="flex items-center justify-center gap-3">
-              <Icon name="Mail" size={20} className="text-gold" />
-              <a href="mailto:info@atelier-confiserie.ru" className="text-lg hover:text-gold transition-colors">
-                info@atelier-confiserie.ru
-              </a>
-            </div>
+            <a href="mailto:info@sweetdreams.ru" className="flex flex-col items-center gap-3 p-6 bg-white/10 backdrop-blur-sm rounded-2xl hover:bg-white/20 transition-all group">
+              <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                <Icon name="Mail" size={24} className="text-purple" />
+              </div>
+              <div className="text-white">
+                <p className="text-sm font-semibold mb-1">Напишите</p>
+                <p className="text-lg font-bold">info@sweetdreams.ru</p>
+              </div>
+            </a>
             
-            <div className="flex items-center justify-center gap-3">
-              <Icon name="MapPin" size={20} className="text-gold" />
-              <span className="text-lg">г. Москва, ул. Примерная, д. 1</span>
+            <div className="flex flex-col items-center gap-3 p-6 bg-white/10 backdrop-blur-sm rounded-2xl">
+              <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center">
+                <Icon name="MapPin" size={24} className="text-orange" />
+              </div>
+              <div className="text-white">
+                <p className="text-sm font-semibold mb-1">Адрес</p>
+                <p className="text-lg font-bold">Москва, ул. Примерная 1</p>
+              </div>
             </div>
           </div>
 
-          <div className="flex items-center justify-center gap-6 pt-8">
+          <div className="flex items-center justify-center gap-4 pt-4">
             <a
               href="https://instagram.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-12 h-12 rounded-full border border-gold/30 flex items-center justify-center hover:bg-gold hover:border-gold transition-all group"
+              className="w-14 h-14 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center hover:bg-white hover:scale-110 transition-all group"
             >
-              <Icon name="Instagram" size={20} className="text-gold group-hover:text-dark transition-colors" />
+              <Icon name="Instagram" size={24} className="text-white group-hover:text-pink transition-colors" />
             </a>
             
             <a
               href="https://facebook.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-12 h-12 rounded-full border border-gold/30 flex items-center justify-center hover:bg-gold hover:border-gold transition-all group"
+              className="w-14 h-14 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center hover:bg-white hover:scale-110 transition-all group"
             >
-              <Icon name="Facebook" size={20} className="text-gold group-hover:text-dark transition-colors" />
+              <Icon name="Facebook" size={24} className="text-white group-hover:text-purple transition-colors" />
             </a>
             
             <a
               href="https://vk.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-12 h-12 rounded-full border border-gold/30 flex items-center justify-center hover:bg-gold hover:border-gold transition-all group"
+              className="w-14 h-14 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center hover:bg-white hover:scale-110 transition-all group"
             >
-              <Icon name="Share2" size={20} className="text-gold group-hover:text-dark transition-colors" />
+              <Icon name="Share2" size={24} className="text-white group-hover:text-orange transition-colors" />
             </a>
           </div>
 
           <Button
             size="lg"
-            className="bg-gold text-dark hover:bg-gold/90 font-light tracking-wider text-lg px-8 py-6 rounded-full"
+            className="bg-white text-pink hover:bg-white/90 font-bold text-xl px-12 py-8 rounded-full shadow-2xl hover:shadow-3xl hover:scale-105 transition-all duration-300"
             onClick={() => window.open('https://wa.me/79999999999', '_blank')}
           >
-            <Icon name="MessageCircle" size={20} />
+            <Icon name="MessageCircle" size={28} />
             Написать в WhatsApp
+            <Icon name="ArrowRight" size={28} />
           </Button>
 
-          <div className="pt-12 text-sm text-cream/50">
-            <p>© 2024 Atelier Confiserie. Все права защищены.</p>
+          <div className="pt-8 text-sm text-white/70">
+            <p>© 2024 Sweet Dreams. Все права защищены.</p>
           </div>
         </div>
       </section>
 
       <Dialog open={!!selectedProduct} onOpenChange={() => setSelectedProduct(null)}>
-        <DialogContent className="bg-secondary border-gold/30 text-cream max-w-2xl">
+        <DialogContent className="bg-white border-pink/30 text-foreground max-w-3xl rounded-3xl">
           <DialogHeader>
-            <DialogTitle className="text-3xl font-light text-gold mb-4">
+            <DialogTitle className="text-4xl font-extrabold bg-gradient-to-r from-pink via-purple to-orange bg-clip-text text-transparent mb-4">
               {selectedProduct?.title}
             </DialogTitle>
           </DialogHeader>
           
           {selectedProduct && (
-            <div className="space-y-6">
-              <div className="rounded-lg overflow-hidden">
+            <div className="space-y-8">
+              <div className="rounded-3xl overflow-hidden shadow-2xl">
                 <img
                   src={selectedProduct.image}
                   alt={selectedProduct.title}
@@ -273,23 +310,23 @@ export default function Index() {
                 />
               </div>
               
-              <div className="space-y-4">
-                <p className="text-lg text-cream/80 leading-relaxed">
+              <div className="space-y-6">
+                <p className="text-xl text-muted-foreground leading-relaxed">
                   {selectedProduct.description}
                 </p>
                 
-                <div className="flex items-center justify-between pt-4 border-t border-gold/20">
-                  <span className="text-2xl font-light text-gold">
+                <div className="flex items-center justify-between pt-6 border-t-2 border-pink/20">
+                  <span className="text-4xl font-extrabold bg-gradient-to-r from-pink to-purple bg-clip-text text-transparent">
                     {selectedProduct.price}
                   </span>
                   
                   <Button
                     size="lg"
-                    className="bg-gold text-dark hover:bg-gold/90"
+                    className="bg-gradient-to-r from-pink via-purple to-orange text-white hover:scale-105 transition-transform font-bold text-lg px-8 py-6 rounded-full shadow-xl"
                     onClick={() => window.open('https://wa.me/79999999999', '_blank')}
                   >
-                    <Icon name="ShoppingCart" size={18} />
-                    Заказать
+                    <Icon name="ShoppingBag" size={22} />
+                    Заказать сейчас
                   </Button>
                 </div>
               </div>

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -6,39 +6,41 @@
 
 @layer base {
   :root {
-    --background: 32 24% 12%;
-    --foreground: 40 30% 98%;
+    --background: 0 0% 100%;
+    --foreground: 240 10% 15%;
 
-    --card: 32 24% 12%;
-    --card-foreground: 40 30% 98%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 15%;
 
-    --popover: 32 24% 14%;
-    --popover-foreground: 40 30% 98%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 15%;
 
-    --primary: 43 74% 66%;
-    --primary-foreground: 32 24% 12%;
+    --primary: 350 95% 65%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 40 20% 22%;
-    --secondary-foreground: 40 30% 98%;
+    --secondary: 25 100% 60%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 40 15% 25%;
-    --muted-foreground: 40 10% 70%;
+    --muted: 220 15% 96%;
+    --muted-foreground: 220 10% 50%;
 
-    --accent: 43 74% 66%;
-    --accent-foreground: 32 24% 12%;
+    --accent: 280 85% 65%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 40 30% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 40 20% 30%;
-    --input: 40 20% 30%;
-    --ring: 43 74% 66%;
+    --border: 220 15% 90%;
+    --input: 220 15% 90%;
+    --ring: 350 95% 65%;
 
-    --radius: 0.5rem;
+    --radius: 1rem;
 
-    --gold: 43 74% 66%;
-    --cream: 40 30% 98%;
-    --dark: 32 24% 12%;
+    --pink: 350 95% 65%;
+    --orange: 25 100% 60%;
+    --purple: 280 85% 65%;
+    --gradient-start: 350 95% 65%;
+    --gradient-end: 280 85% 65%;
 
     --sidebar-background: 0 0% 98%;
 
@@ -103,7 +105,7 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: "Montserrat", sans-serif;
+    font-family: "Poppins", sans-serif;
   }
 
   h1,
@@ -112,6 +114,7 @@
   h4,
   h5,
   h6 {
-    font-family: "Cormorant Garamond", serif;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
   }
 }
